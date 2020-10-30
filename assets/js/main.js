@@ -257,23 +257,33 @@ const radioAvengers = document.querySelector('#avengers');
 const radioXmen = document.querySelector('#xmen');
 const radioPrincess = document.querySelector('#princess');
 const radioBatman = document.querySelector('#batman');
-
+const allMovies = document.querySelectorAll('.poster');
 
 let getMovies = (title, year) => {
+
     // clear data before select radio
     while (movieWrapper.hasChildNodes()) {
         movieWrapper.removeChild(movieWrapper.lastChild);
     }
     movies.map(movie => {
+
         if (movie.Title.includes(title)) {
             const imgPoster = document.createElement('img');
+            const posterATag = document.createElement('a');
             imgPoster.src = movie.Poster;
-            movieWrapper.appendChild(imgPoster);
+            posterATag.href = `https://www.imdb.com/title/${movie.imdbID}`;
+            posterATag.target = '_blank';
+            movieWrapper.appendChild(posterATag);
+            posterATag.appendChild(imgPoster);
             imgPoster.classList.add('poster');
         } else if (movie.Year >= year) {
             const imgPoster = document.createElement('img');
+            const posterATag = document.createElement('a');
             imgPoster.src = movie.Poster;
-            movieWrapper.appendChild(imgPoster);
+            posterATag.href = `https://www.imdb.com/title/${movie.imdbID}`;
+            posterATag.target = '_blank';
+            movieWrapper.appendChild(posterATag);
+            posterATag.appendChild(imgPoster);
             imgPoster.classList.add('poster');
         }
     });
@@ -308,6 +318,8 @@ allRadioButtons.forEach(item => {
     })
 });
 
+
+// 1. Als ik op een film klik wil ik naar een url gaan
 
 // 9. Als gebruiker kan ik op de poster van de film klikken, waardoor ik naar de juiste IMDB pagina wordt gebracht.
 // - IMDB werkt met een id per film/serie in de URL. Deze ids vind je ook weer terug in onze filmdatabase. Zie bijvoorbeeld: https://www.imdb.com/title/tt0944947/ Pas de URL van IMDB aan en plak het juiste ID erachter.
