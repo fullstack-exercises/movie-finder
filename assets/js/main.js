@@ -259,53 +259,55 @@ const radioPrincess = document.querySelector('#princess');
 const radioBatman = document.querySelector('#batman');
 
 
-let showAllMoviePosters = () => {
+let getMovies = (title, year) => {
+    // clear data before select radio
+    while (movieWrapper.hasChildNodes()) {
+        movieWrapper.removeChild(movieWrapper.lastChild);
+    }
     movies.map(movie => {
-        const imgPoster = document.createElement('img');
-        imgPoster.src = movie.Poster;
-        movieWrapper.appendChild(imgPoster);
-        imgPoster.classList.add('poster');
-        console.log(movie);
+        if (movie.Title.includes(title)) {
+            const imgPoster = document.createElement('img');
+            imgPoster.src = movie.Poster;
+            movieWrapper.appendChild(imgPoster);
+            imgPoster.classList.add('poster');
+        } else if (movie.Year >= year) {
+            const imgPoster = document.createElement('img');
+            imgPoster.src = movie.Poster;
+            movieWrapper.appendChild(imgPoster);
+            imgPoster.classList.add('poster');
+        }
     });
-}
-showAllMoviePosters();
+};
 
+// Get all movies before select category
+getMovies('');
+
+// Get filtered movies on radio button click
 allRadioButtons.forEach(item => {
     item.addEventListener('click', event => {
         if (radioLatest.checked) {
             console.log('latest is checked')
+            getMovies(0, 2014);
+
         } else if (radioAvengers.checked) {
             console.log('avengers is checked')
+            getMovies('Avengers');
+
         } else if (radioXmen.checked) {
             console.log('x-men is checked')
+            getMovies('X-Men');
+
+        } else if (radioPrincess.checked) {
+            console.log('princess is checked')
+            getMovies('Princess');
+
         } else if (radioBatman.checked) {
             console.log('batman is checked')
+            getMovies('Batman');
         }
     })
 });
 
 
-// TOOLS
-// - functie
-// - .filter, .sort, .reduce, switch statement
-// Compare functie (sort)
-
-
-
-
-
-// Aan deze eisen moet jouw project voldoen:
-
-// 2. Als gebruiker wil ik bovenaan de pagina kunnen klikken op 5 verschillende filters in de vorm van radio-buttons. De filter functionaliteit wordt hieronder verder toegelicht.
-// 3. Als gebruiker kan ik maar 1 filter tegelijk gebruiken.
-// - Als ik een ander filter aanklik gaat het andere filter dus weer uit. (Hence de radiobutton (1 antwoord mogelijk), in tegenstelling tot een checkbox (meerdere antwoorden mogelijk).
-// 4. Categorie 1: Als gebruiker wil ik kunnen filteren op de categorie nieuwste films: van de laatste jaren, dat betekent 2014 of nieuwer.
-// 5. Categorie 2: Als gebruiker wil ik kunnen filters op films met "Avengers" in de titel.
-// 6. Categorie 3: Als gebruiker wil ik kunnen filteren op films met "X-Men" in de titel.
-// 7. Categorie 4: Als gebruiker wil ik kunnen filteren op films met "Princess" in de titel.
-// 8. Categorie 5: Als gebruiker wil ik kunnen filteren op films met "Batman" in de titel.
-// - Gebruik arraymethods voor je filters
-// - Check of een gedeelte van een string in een andere string aanwezig is met de .includes() method.
-// - De laatste 4 filters lijken heel veel op elkaar. Heb je daar meerdere functies voor nodig? Kan het ook in 1?
 // 9. Als gebruiker kan ik op de poster van de film klikken, waardoor ik naar de juiste IMDB pagina wordt gebracht.
 // - IMDB werkt met een id per film/serie in de URL. Deze ids vind je ook weer terug in onze filmdatabase. Zie bijvoorbeeld: https://www.imdb.com/title/tt0944947/ Pas de URL van IMDB aan en plak het juiste ID erachter.
