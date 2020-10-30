@@ -250,24 +250,39 @@ const movies = [{
     }
 ];
 const movieWrapper = document.querySelector('.movies');
+const imgPoster = document.createElement('img');
+const allRadioButtons = document.querySelectorAll('.category');
+const radioLatest = document.querySelector('#latest');
+const radioAvengers = document.querySelector('#avengers');
+const radioXmen = document.querySelector('#xmen');
+const radioPrincess = document.querySelector('#princess');
+const radioBatman = document.querySelector('#batman');
 
 
-// const moviePoster = document.querySelector('.movie__poster');
+let showAllMoviePosters = () => {
+    movies.map(movie => {
+        const imgPoster = document.createElement('img');
+        imgPoster.src = movie.Poster;
+        movieWrapper.appendChild(imgPoster);
+        imgPoster.classList.add('poster');
+        console.log(movie);
+    });
+}
+showAllMoviePosters();
 
-const availableMovies = movies.map(poster => {
-
-    return movieWrapper.innerHTML = `<img src="${poster.Poster}">`;
+allRadioButtons.forEach(item => {
+    item.addEventListener('click', event => {
+        if (radioLatest.checked) {
+            console.log('latest is checked')
+        } else if (radioAvengers.checked) {
+            console.log('avengers is checked')
+        } else if (radioXmen.checked) {
+            console.log('x-men is checked')
+        } else if (radioBatman.checked) {
+            console.log('batman is checked')
+        }
+    })
 });
-
-console.log(availableMovies);
-
-// const availableMovies = movies.map(poster => {
-//     console.log(poster.Poster);
-//     poster.forEach(movie => {
-//         console.log('movieee');
-//     });
-//     // return movieWrapper.innerHTML = `<img src="${poster.Poster}">`;
-// });
 
 
 // TOOLS
@@ -278,26 +293,9 @@ console.log(availableMovies);
 
 
 
-// 1 PSUEDO CODE
-// - functie
-// - een lijst tonen met alle films als posters (die achter de schermen nog veel meer info hebben zoals naam, categorie etc)
-//      -- output poster omzetten naar url zonder kommas of array
-// 
-
-
-
-
-
-
-
-
-
-
 
 // Aan deze eisen moet jouw project voldoen:
 
-// 1. Als gebruiker wil ik een lijst kunnen zien van de beschikbare films met de poster van de film.
-// - Check de data: elke film in de database heeft een link naar de juiste poster.
 // 2. Als gebruiker wil ik bovenaan de pagina kunnen klikken op 5 verschillende filters in de vorm van radio-buttons. De filter functionaliteit wordt hieronder verder toegelicht.
 // 3. Als gebruiker kan ik maar 1 filter tegelijk gebruiken.
 // - Als ik een ander filter aanklik gaat het andere filter dus weer uit. (Hence de radiobutton (1 antwoord mogelijk), in tegenstelling tot een checkbox (meerdere antwoorden mogelijk).
