@@ -1,0 +1,30 @@
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    &__single {
+        padding: $space $space 0;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        &:hover {
+            transform: scale(1.1);
+            &::after {
+                content: 'View trailer';
+                position: absolute;
+                top: 45%;
+                left: 25%;
+                color: $color-white;
+                background-color: $color-gold;
+                padding: $space-s;
+                border-radius: 10px;
+                font-size: 14px;
+            }
+        }
+        img {
+            width: 300px;
+            object-fit: cover;
+            height: auto;
+        }
+    }
+}

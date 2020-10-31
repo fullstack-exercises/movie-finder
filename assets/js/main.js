@@ -258,6 +258,8 @@ const radioXmen = document.querySelector('#xmen');
 const radioPrincess = document.querySelector('#princess');
 const radioBatman = document.querySelector('#batman');
 const allMovies = document.querySelectorAll('.poster');
+const inputSearch = document.querySelector('#movieSearchbar');
+const searchForm = document.querySelector('#searchForm');
 
 let getMovies = (title, year) => {
 
@@ -270,6 +272,7 @@ let getMovies = (title, year) => {
         if (movie.Title.includes(title)) {
             const imgPoster = document.createElement('img');
             const posterATag = document.createElement('a');
+            posterATag.classList.add('movies__single');
             imgPoster.src = movie.Poster;
             posterATag.href = `https://www.imdb.com/title/${movie.imdbID}`;
             posterATag.target = '_blank';
@@ -279,6 +282,7 @@ let getMovies = (title, year) => {
         } else if (movie.Year >= year) {
             const imgPoster = document.createElement('img');
             const posterATag = document.createElement('a');
+            posterATag.classList.add('movies__single');
             imgPoster.src = movie.Poster;
             posterATag.href = `https://www.imdb.com/title/${movie.imdbID}`;
             posterATag.target = '_blank';
@@ -291,6 +295,34 @@ let getMovies = (title, year) => {
 
 // Get all movies before select category
 getMovies('');
+
+// Capitalize First Letter
+const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// Add filtered searchbar
+const getMoviesOnSearch = () => {
+    searchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const capitalizeSearchInput = capitalizeFirstLetter(inputSearch.value);
+        if (inputSearch.value === '') {
+            getMovies('');
+        } else if (capitalizeSearchInput === 'Latest') {
+            getMovies(0, 2014);
+        } else if (capitalizeSearchInput === 'Avengers') {
+            getMovies('Avengers');
+        } else if (capitalizeSearchInput === 'X-men' || capitalizeSearchInput === 'X-Men') {
+            getMovies('X-Men');
+        } else if (capitalizeSearchInput === 'Princess') {
+            getMovies('Princess');
+        } else if (capitalizeSearchInput === 'Batman') {
+            getMovies('Batman');
+        }
+        console.log(capitalizeSearchInput);
+    });
+}
+getMoviesOnSearch();
 
 // Get filtered movies on radio button click
 allRadioButtons.forEach(item => {
@@ -319,7 +351,5 @@ allRadioButtons.forEach(item => {
 });
 
 
-// 1. Als ik op een film klik wil ik naar een url gaan
 
-// 9. Als gebruiker kan ik op de poster van de film klikken, waardoor ik naar de juiste IMDB pagina wordt gebracht.
-// - IMDB werkt met een id per film/serie in de URL. Deze ids vind je ook weer terug in onze filmdatabase. Zie bijvoorbeeld: https://www.imdb.com/title/tt0944947/ Pas de URL van IMDB aan en plak het juiste ID erachter.
+// BONUS: Als gebruiker kan ik in een inputfield de titel van de film invullen, wanneer ik op enter druk worden de films gefilterd op de titel die ik heb ingevuld

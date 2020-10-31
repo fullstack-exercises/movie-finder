@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap");
+body {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+}
+
+nav {
+  max-width: 1024px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+nav form {
+  margin-bottom: 30px;
+}
+
+nav form #movieSearchbar {
+  width: 100%;
+  padding: 7.5px;
+  text-align: center;
+}
+
+nav form input {
+  display: block;
+}
+
+nav form label {
+  position: relative;
+  top: -17px;
+}
+
+h1 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 40px;
+  text-transform: uppercase;
+  color: #d3aa6c;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+}
+
+.movies {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.movies__single {
+  padding: 15px 15px 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.movies__single:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.movies__single:hover::after {
+  content: 'View trailer';
+  position: absolute;
+  top: 45%;
+  left: 25%;
+  color: #ffffff;
+  background-color: #d3aa6c;
+  padding: 7.5px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.movies__single img {
+  width: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: auto;
+}
+
+@media screen and (min-width: 480px) {
+  .movies__single img {
+    width: 150px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 220px;
+  }
+  nav form input {
+    display: unset;
+  }
+  nav form label {
+    position: relative;
+    top: unset;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
