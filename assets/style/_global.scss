@@ -17,8 +17,9 @@ nav {
     form {
         margin-bottom: $space-l;
         #movieSearchbar {
-            width: 100%;
+            width: 85%;
             border: none;
+            display: inline-block;
             padding: $space-s;
             text-align: center;
             position: relative;
