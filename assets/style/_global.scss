@@ -4,6 +4,13 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: auto;
+}
+
 nav {
     max-width: 1024px;
     flex-flow: column;
