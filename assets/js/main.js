@@ -261,12 +261,15 @@ const allMovies = document.querySelectorAll('.poster');
 const inputSearch = document.querySelector('#movieSearchbar');
 const searchForm = document.querySelector('#searchForm');
 
-let getMovies = (title, year) => {
-
+const ClearAllMovies = () => {
     // clear data before select radio
     while (movieWrapper.hasChildNodes()) {
         movieWrapper.removeChild(movieWrapper.lastChild);
     }
+}
+
+let getMovies = (title, year) => {
+    ClearAllMovies();
     movies.map(movie => {
         if (movie.Title.includes(title)) {
             const imgPoster = document.createElement('img');
@@ -313,6 +316,9 @@ const getMoviesOnSearch = () => {
             } else if (searchText.includes('La')) {
                 getMovies(0, 2014);
             }
+            // else {
+            //     movieWrapper.innerHTML = `No results found with '${inputSearch.value}'`
+            // }
         });
     })
 };
