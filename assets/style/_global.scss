@@ -18,8 +18,10 @@ nav {
         margin-bottom: $space-l;
         #movieSearchbar {
             width: 100%;
+            border: none;
             padding: $space-s;
             text-align: center;
+            position: relative;
         }
         input {
             display: block;
@@ -45,4 +47,15 @@ h1 {
     text-align: center;
     justify-content: center;
     margin: auto;
+}
+
+.btn {
+    color: $color-white;
+    background-color: $color-gold;
+    padding: $space-s;
+    font-size: 14px;
+    outline: 0;
+    border: none;
+    position: relative;
+    line-height: 1.1;
 }

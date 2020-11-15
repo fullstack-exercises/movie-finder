@@ -26,8 +26,10 @@ nav form {
 
 nav form #movieSearchbar {
   width: 100%;
+  border: none;
   padding: 7.5px;
   text-align: center;
+  position: relative;
 }
 
 nav form input {
@@ -58,6 +60,17 @@ h1 {
       -ms-flex-pack: center;
           justify-content: center;
   margin: auto;
+}
+
+.btn {
+  color: #ffffff;
+  background-color: #d3aa6c;
+  padding: 7.5px;
+  font-size: 14px;
+  outline: 0;
+  border: none;
+  position: relative;
+  line-height: 1.1;
 }
 
 .movies {
@@ -125,6 +138,9 @@ h1 {
 @media screen and (min-width: 1024px) {
   .container {
     max-width: 1024px;
+  }
+  .container #movieSearchbar {
+    width: 50%;
   }
 }
 /*# sourceMappingURL=style.css.map */
