@@ -268,7 +268,6 @@ let getMovies = (title, year) => {
         movieWrapper.removeChild(movieWrapper.lastChild);
     }
     movies.map(movie => {
-
         if (movie.Title.includes(title)) {
             const imgPoster = document.createElement('img');
             const posterATag = document.createElement('a');
@@ -305,51 +304,37 @@ const capitalizeFirstLetter = (string) => {
 const getMoviesOnSearch = () => {
     searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        const capitalizeSearchInput = capitalizeFirstLetter(inputSearch.value);
-        if (inputSearch.value === '') {
-            getMovies('');
-        } else if (capitalizeSearchInput === 'Latest') {
-            getMovies(0, 2014);
-        } else if (capitalizeSearchInput === 'Avengers') {
-            getMovies('Avengers');
-        } else if (capitalizeSearchInput === 'X-men' || capitalizeSearchInput === 'X-Men') {
-            getMovies('X-Men');
-        } else if (capitalizeSearchInput === 'Princess') {
-            getMovies('Princess');
-        } else if (capitalizeSearchInput === 'Batman') {
-            getMovies('Batman');
-        }
-        console.log(capitalizeSearchInput);
-    });
-}
+        let searchText = capitalizeFirstLetter(inputSearch.value);
+        movies.filter(movie => {
+            const MovieTitleContainsSearchValue = movie.Title.includes(searchText);
+            console.log(searchText);
+            if (MovieTitleContainsSearchValue) {
+                getMovies(searchText);
+            } else if (searchText.includes('La')) {
+                getMovies(0, 2014);
+            }
+        });
+    })
+};
 getMoviesOnSearch();
 
 // Get filtered movies on radio button click
 allRadioButtons.forEach(item => {
     item.addEventListener('click', event => {
         if (radioLatest.checked) {
-            console.log('latest is checked')
             getMovies(0, 2014);
 
         } else if (radioAvengers.checked) {
-            console.log('avengers is checked')
             getMovies('Avengers');
 
         } else if (radioXmen.checked) {
-            console.log('x-men is checked')
             getMovies('X-Men');
 
         } else if (radioPrincess.checked) {
-            console.log('princess is checked')
             getMovies('Princess');
 
         } else if (radioBatman.checked) {
-            console.log('batman is checked')
             getMovies('Batman');
         }
     })
 });
-
-
-
-// BONUS: Als gebruiker kan ik in een inputfield de titel van de film invullen, wanneer ik op enter druk worden de films gefilterd op de titel die ik heb ingevuld
