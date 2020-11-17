@@ -309,16 +309,16 @@ const getMoviesOnSearch = () => {
         event.preventDefault();
         let searchText = capitalizeFirstLetter(inputSearch.value);
         movies.filter(movie => {
-            const MovieTitleContainsSearchValue = movie.Title.includes(searchText);
-            console.log(searchText);
-            if (MovieTitleContainsSearchValue) {
+            let filtered_movies = movies.filter(movie => {
+                const movieTitleContainsSearchValue = movie.Title.includes(searchText);
+                return movieTitleContainsSearchValue;
+            });
+            if (filtered_movies) {
                 getMovies(searchText);
-            } else if (searchText.includes('La')) {
-                getMovies(0, 2014);
+                console.log(searchText);
+            } else {
+                movieWrapper.innerHTML = `No results found with '${searchText}'`
             }
-            // else {
-            //     movieWrapper.innerHTML = `No results found with '${inputSearch.value}'`
-            // }
         });
     })
 };
